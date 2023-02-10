@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                         cleanWs()
-                        git branch: 'master', url: 'https://gitlab.com/KonChoo/spring-boot-empty-project.git'
+                        git branch: 'master', url: 'https://gitlab.com/KonChoo/angular-empty-project.git'
                     
                 }
             }
