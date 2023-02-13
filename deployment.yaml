@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: angular-empty-project
-        image: 192.168.0.111:8050/angular-empty-project
+        image: ${IMAGE}
         ports:
         - containerPort: 4200
         # volumeMounts:
