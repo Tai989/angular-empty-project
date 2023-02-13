@@ -22,7 +22,7 @@ FROM node:14-alpine
 # Set the working directory in the container to /app
 WORKDIR /app
 
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@14.2.0
 
 # Copy the built artifacts from the build stage
 COPY --from=build /app /app

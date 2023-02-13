@@ -17,7 +17,6 @@ pipeline {
                         sh 'pwd'
                         sh 'ls'
                         if (env.ENVIRONMENT == 'dev') {
-                                sh "gradle build -b ${module}/build.gradle -x test"
                                 //${JOB_NAME} should be the same as git repo project name
                                 sh "docker build -t 192.168.0.111:8050/${JOB_NAME} -f Dockerfile ."
                                 sh "docker push 192.168.0.111:8050/${JOB_NAME}"
