@@ -19,8 +19,8 @@ pipeline {
                         if (env.ENVIRONMENT == 'dev') {
                                 sh "gradle build -b ${module}/build.gradle -x test"
                                 //${JOB_NAME} should be the same as git repo project name
-                                sh "docker build -t 192.168.0.111:8050/${JOB_NAME}:${BUILD_ID} -f Dockerfile ."
-                                sh "docker push 192.168.0.111:8050/${JOB_NAME}:${BUILD_ID}"
+                                sh "docker build -t 192.168.0.111:8050/${JOB_NAME} -f Dockerfile ."
+                                sh "docker push 192.168.0.111:8050/${JOB_NAME}"
                         } else {
                                 println "当前选择的环境待实现..."
                                 currentBuild.result = "FAILURE"
@@ -34,7 +34,7 @@ pipeline {
                 script {
                             if (env.ENVIRONMENT == "dev") {
                                 def yaml = readFile("deployment.yaml")
-                                yaml = yaml.replace('${IMAGE}', "192.168.0.111:8050/${JOB_NAME}:${BUILD_ID}")
+                                yaml = yaml.replace('${IMAGE}', "192.168.0.111:8050/${JOB_NAME}")
                                 println("当前项目的k8s配置文件内容 : \n")
                                 println("${yaml}")
                                 writeFile file: "deployment.yaml", text: yaml

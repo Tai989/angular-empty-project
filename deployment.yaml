@@ -15,21 +15,21 @@ spec:
     spec:
       containers:
       - name: angular-empty-project
-        image: ${IMAGE}
+        image: 192.168.0.111:8050/angular-empty-project
         ports:
         - containerPort: 4200
-        volumeMounts:
-        - name: angular-empty-project-code
-          mountPath: /app
+        # volumeMounts:
+        # - name: angular-empty-project-code
+        #   mountPath: /app
         command: ["ng", "serve","--host","0.0.0.0"]
         resources:
           limits:
             memory: "256Mi"
             cpu: "500m"
-      volumes:
-      - name: angular-empty-project-code
-        configMap:
-          name: angular-empty-project-code
+      # volumes:
+      # - name: angular-empty-project-code
+      #   configMap:
+      #     name: angular-empty-project-code
 ---
 apiVersion: v1
 kind: Service
