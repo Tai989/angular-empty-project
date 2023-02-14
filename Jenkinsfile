@@ -8,10 +8,7 @@ pipeline {
 
         //git仓库地址
         PROJECT_GIT_URL = "https://gitlab.com/KonChoo/angular-empty-project.git"
-
-        //部署分支
-        GIT_BRANCH="master"
-
+        
         //git凭证
         GIT_CREDENTIALS=""
         //镜像tag
