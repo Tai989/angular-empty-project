@@ -22,7 +22,7 @@ FROM node:14-alpine
 # Set the working directory in the container to /app
 WORKDIR /app
 
-RUN npm install -g @angular/cli@14.2.0
+RUN npm install -g @angular/cli
 
 # Copy the built artifacts from the build stage
 COPY --from=build /app /app
@@ -31,4 +31,4 @@ COPY --from=build /app /app
 EXPOSE 4200
 
 # Set the default command to run when the container starts
-CMD [ "ng", "serve","--host","0.0.0.0" ]
+CMD [ "ng", "serve","--host","0.0.0.0","--disable-host-check"]

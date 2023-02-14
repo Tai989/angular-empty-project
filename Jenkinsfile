@@ -1,23 +1,26 @@
 pipeline {
+    parameters {
+        gitParameter branchFilter: '*origin/(.\\*)*', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
     environment{
-        //Change it to your project name
+        //项目名称
         PROJECT_NAME = "angular-empty-project"
 
-        //Change it to your project git
+        //git仓库地址
         PROJECT_GIT_URL = "https://gitlab.com/KonChoo/angular-empty-project.git"
 
-        //Change it to your project deployment branch
+        //部署分支
         GIT_BRANCH="master"
 
-        //Change it to your git credentials store in jenkins or not when your project that can be public access
+        //git凭证
         GIT_CREDENTIALS=""
-        //Change it to your image tag
+        //镜像tag
         IMAGE_TAG = "latest"
 
-        //Change it to your project Dockerfile
+        //docker文件
         DOCKERFILE = "Dockerfile"
 
-        //Change it to your k8s deployment file for dev environment
+        //dev环境k8s部署环境
         K8S_DEV_DEPLOYMENT_FILE = "deployment.yaml"
     }
     agent any
@@ -33,10 +36,10 @@ pipeline {
                     sh 'ls'
                     cleanWs()
                     if(env.GIT_CREDENTIALS == null || env.GIT_CREDENTIALS.trim().isEmpty()){                     
-                        git branch: "${GIT_BRANCH}", 
+                        git branch: "${params.BRANCH}", 
                         url: "${PROJECT_GIT_URL}"
                     }else{
-                        git branch: "${GIT_BRANCH}", 
+                        git branch: "${params.BRANCH}", 
                         url: "${PROJECT_GIT_URL}",
                         credentialsId: "${GIT_CREDENTIALS}"
                     }
