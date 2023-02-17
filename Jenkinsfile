@@ -1,6 +1,6 @@
 pipeline {
     parameters {
-        gitParameter branchFilter: '*origin/(.\\*)*', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        gitParameter branchFilter: '*origin/(.\*)*', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
     }
     environment{
         //项目名称
@@ -8,7 +8,7 @@ pipeline {
 
         //git仓库地址
         PROJECT_GIT_URL = "https://gitlab.com/KonChoo/angular-empty-project.git"
-        
+
         //git凭证
         GIT_CREDENTIALS=""
         //镜像tag
